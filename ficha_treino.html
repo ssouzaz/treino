@@ -8,31 +8,26 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif;background:#04080f;min-height:100vh}
 .app{width:100%;max-width:480px;margin:0 auto;padding-bottom:2rem;position:relative}
-
 .blob1{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.2) 0%,transparent 70%);top:-80px;left:-80px;pointer-events:none;z-index:0}
 .blob2{position:fixed;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,0.12) 0%,transparent 70%);top:100px;right:-60px;pointer-events:none;z-index:0}
 .blob3{position:fixed;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.1) 0%,transparent 70%);bottom:80px;left:0;pointer-events:none;z-index:0}
-
-.content{position:relative;z-index:1}
-
-/* STATUS BAR */
-.status-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 20px 6px}
-.status-time{font-size:15px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:-0.3px}
-.status-icons{display:flex;gap:5px;align-items:center;color:rgba(255,255,255,0.8);font-size:14px}
+.content{position:relative;z-index:1;padding-top:1rem}
 
 /* HEADER */
-.lg-header{margin:6px 12px 0;border-radius:22px;padding:16px 18px 14px;position:relative;overflow:hidden;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14)}
+.lg-header{margin:0 12px;border-radius:22px;padding:16px 18px 14px;position:relative;overflow:hidden;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14)}
 .lg-header::before{content:'';position:absolute;inset:0;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0.03) 40%,transparent 70%);pointer-events:none}
 .lg-header::after{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);pointer-events:none}
-.lg-header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;position:relative}
-.lg-icon{width:40px;height:40px;border-radius:12px;background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.35);display:flex;align-items:center;justify-content:center;font-size:18px;color:#a5b4fc}
-.lg-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 11px}
+
+/* Ícone + pill na mesma linha do título */
+.lg-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;position:relative}
+.lg-title{font-size:22px;font-weight:700;color:rgba(255,255,255,0.95);letter-spacing:-0.5px;flex:1;padding:0 10px}
+.lg-title em{font-style:normal;color:#93c5fd}
+.lg-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 11px;flex-shrink:0}
 .lg-pill-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399}
 .lg-pill span{font-size:11px;color:rgba(255,255,255,0.65);font-weight:500}
-.lg-title{font-size:22px;font-weight:700;color:rgba(255,255,255,0.95);letter-spacing:-0.5px;position:relative}
-.lg-title em{font-style:normal;color:#93c5fd}
-.lg-sub{font-size:12px;color:rgba(255,255,255,0.38);margin-top:2px;position:relative}
-.lg-stats{display:flex;gap:8px;margin-top:12px;position:relative}
+
+.lg-sub{font-size:12px;color:rgba(255,255,255,0.38);margin-bottom:12px;position:relative;padding-left:2px}
+.lg-stats{display:flex;gap:8px;position:relative}
 .lg-stat{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:9px 10px;position:relative;overflow:hidden}
 .lg-stat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:rgba(255,255,255,0.12)}
 .lg-stat-n{font-size:18px;font-weight:700;color:rgba(255,255,255,0.95);letter-spacing:-0.5px}
@@ -93,26 +88,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
   <div class="blob3"></div>
   <div class="content">
 
-    <div class="status-bar">
-      <span class="status-time" id="statusTime">9:41</span>
-      <div class="status-icons">
-        <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 2.5C9.8 2.5 11.4 3.2 12.6 4.3L14 2.9C12.4 1.4 10.3 0.5 8 0.5C5.7 0.5 3.6 1.4 2 2.9L3.4 4.3C4.6 3.2 6.2 2.5 8 2.5Z" fill="rgba(255,255,255,0.8)"/><path d="M8 5.5C9.1 5.5 10.1 5.9 10.8 6.6L12.2 5.2C11.1 4.2 9.6 3.5 8 3.5C6.4 3.5 4.9 4.2 3.8 5.2L5.2 6.6C5.9 5.9 6.9 5.5 8 5.5Z" fill="rgba(255,255,255,0.8)"/><circle cx="8" cy="10" r="1.5" fill="rgba(255,255,255,0.8)"/></svg>
-        <svg width="14" height="12" viewBox="0 0 14 12" fill="rgba(255,255,255,0.8)"><rect x="0" y="8" width="2.5" height="4" rx="1"/><rect x="3.5" y="5.5" width="2.5" height="6.5" rx="1"/><rect x="7" y="3" width="2.5" height="9" rx="1"/><rect x="10.5" y="0" width="2.5" height="12" rx="1"/></svg>
-        <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="rgba(255,255,255,0.35)"/><rect x="1.5" y="1.5" width="17" height="9" rx="2.5" fill="rgba(255,255,255,0.85)"/><path d="M23 4v4a2 2 0 000-4z" fill="rgba(255,255,255,0.4)"/></svg>
-      </div>
-    </div>
-
     <div class="lg-header">
-      <div class="lg-header-top">
-        <div class="lg-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11M4 12h16M4 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zM20 12c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/></svg>
-        </div>
+      <div class="lg-title-row">
+        <div class="lg-title">Ficha de <em>Treino</em></div>
         <div class="lg-pill">
           <div class="lg-pill-dot"></div>
           <span>5 dias ativos</span>
         </div>
       </div>
-      <div class="lg-title">Ficha de <em>Treino</em></div>
       <div class="lg-sub">Semana completa · 5 dias</div>
       <div class="lg-stats">
         <div class="lg-stat"><div class="lg-stat-n">25</div><div class="lg-stat-l">Exercícios</div></div>
@@ -133,11 +116,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
     <div class="day-panel" id="day-0">
       <div class="lg-group">Peito + Tríceps</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino na máquina"></div><div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt="Peck Deck"></div><div class="lg-info"><div class="lg-name">Peck Deck (voador)</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Incline_Chest_Press/0.jpg" alt="Supino inclinado"></div><div class="lg-info"><div class="lg-name">Supino inclinado na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral superior</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg" alt="Tríceps polia"></div><div class="lg-info"><div class="lg-name">Tríceps na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg" alt="Tríceps corda"></div><div class="lg-info"><div class="lg-name">Tríceps corda</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Peck Deck (voador)</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Incline_Chest_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Supino inclinado na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral superior</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Tríceps na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Tríceps corda</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div></div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">20 minutos</div></div></div>
     </div>
@@ -146,11 +129,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
     <div class="day-panel" id="day-1">
       <div class="lg-group">Costas + Bíceps</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div><div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg" alt="Remada baixa"></div><div class="lg-info"><div class="lg-name">Remada baixa</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Iso_Row/0.jpg" alt="Remada máquina"></div><div class="lg-info"><div class="lg-name">Remada na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg" alt="Rosca bíceps"></div><div class="lg-info"><div class="lg-name">Rosca bíceps na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Preacher_Curl/0.jpg" alt="Rosca polia"></div><div class="lg-info"><div class="lg-name">Rosca na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Remada baixa</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Iso_Row/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Remada na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Rosca bíceps na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Preacher_Curl/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Rosca na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div></div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">20 minutos</div></div></div>
     </div>
@@ -159,11 +142,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
     <div class="day-panel" id="day-2">
       <div class="lg-group">Perna</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div><div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg" alt="Cadeira extensora"></div><div class="lg-info"><div class="lg-name">Cadeira extensora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg" alt="Cadeira flexora"></div><div class="lg-info"><div class="lg-name">Cadeira flexora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Isquiotibiais</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg" alt="Panturrilha"></div><div class="lg-info"><div class="lg-name">Panturrilha na máquina</div><div class="lg-sets">4 séries · 15–20 reps</div><span class="lg-badge lb-green">Panturrilha</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div><div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Cadeira extensora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Cadeira flexora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Isquiotibiais</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Panturrilha na máquina</div><div class="lg-sets">4 séries · 15–20 reps</div><span class="lg-badge lb-green">Panturrilha</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">15–20 minutos</div></div></div>
     </div>
@@ -172,11 +155,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
     <div class="day-panel" id="day-3">
       <div class="lg-group">Ombro + Abdômen</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento"></div><div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-blue">Ombro</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg" alt="Elevação lateral"></div><div class="lg-info"><div class="lg-name">Elevação lateral na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide lateral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg" alt="Crucifixo inverso"></div><div class="lg-info"><div class="lg-name">Crucifixo inverso na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide posterior</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div><div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg" alt="Prancha"></div><div class="lg-info"><div class="lg-name">Prancha</div><div class="lg-sets">3 séries · 20–40 segundos</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-blue">Ombro</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Elevação lateral na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide lateral</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Crucifixo inverso na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide posterior</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Prancha</div><div class="lg-sets">3 séries · 20–40 segundos</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">20 minutos</div></div></div>
     </div>
@@ -185,11 +168,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
     <div class="day-panel" id="day-4">
       <div class="lg-group">Corpo Inteiro · Força</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino"></div><div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div><div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div><div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-green">Perna</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento"></div><div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-blue">Ombro</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div><div class="lg-info"><div class="lg-name">Abdominal</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-green">Perna</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-blue">Ombro</span></div></div>
+        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Abdominal</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio leve</div><div class="lg-cardio-s">15 minutos</div></div></div>
     </div>
@@ -207,17 +190,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
   </div>
 </div>
 <script>
-// Relógio real
-function updateTime(){
-  var now=new Date();
-  var h=now.getHours().toString().padStart(2,'0');
-  var m=now.getMinutes().toString().padStart(2,'0');
-  document.getElementById('statusTime').textContent=h+':'+m;
-}
-updateTime();
-setInterval(updateTime,10000);
-
-// Sincronia de dia
 var jsDay=new Date().getDay();
 var dayMap={1:0,2:1,3:2,4:3,5:4};
 var activeDay=(dayMap[jsDay]!==undefined)?dayMap[jsDay]:-1;
