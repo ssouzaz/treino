@@ -5,199 +5,313 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Ficha de Treino</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f2f2f7; min-height: 100vh; }
-.app { width: 100%; max-width: 480px; margin: 0 auto; padding-bottom: 2rem; }
-.header { background: #1a1a2e; color: #fff; padding: 3rem 1.25rem 1.25rem; }
-.header h1 { font-size: 22px; font-weight: 600; }
-.header p { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 3px; }
-.days-scroll { display: flex; gap: 8px; padding: 1rem 1rem 0; overflow-x: auto; scrollbar-width: none; background: #1a1a2e; }
-.days-scroll::-webkit-scrollbar { display: none; }
-.day-chip { flex-shrink: 0; padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 500; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.2); background: transparent; color: rgba(255,255,255,0.6); transition: all 0.15s; }
-.day-chip.active { background: #fff; color: #1a1a2e; border-color: #fff; }
-.tab-spacer { height: 12px; background: #1a1a2e; border-radius: 0 0 20px 20px; }
-.day-panel { display: none; padding: 1rem; flex-direction: column; gap: 10px; }
-.day-panel.active { display: flex; }
-.group-label { font-size: 17px; font-weight: 600; color: #1a1a2e; margin: 4px 0 2px; }
-.exercises { display: flex; flex-direction: column; gap: 10px; }
-.exercise-card { background: #fff; border: 1px solid #e8e8ec; border-radius: 14px; overflow: hidden; display: flex; align-items: center; gap: 12px; padding: 10px 14px 10px 10px; }
-.ex-img-wrap { width: 72px; height: 72px; border-radius: 10px; overflow: hidden; flex-shrink: 0; background: #f2f2f7; display: flex; align-items: center; justify-content: center; }
-.ex-img { width: 100%; height: 100%; object-fit: cover; }
-.ex-info { flex: 1; min-width: 0; }
-.ex-name { font-size: 14px; font-weight: 600; color: #1a1a2e; margin-bottom: 3px; line-height: 1.3; }
-.ex-sets { font-size: 12px; color: #8e8e93; }
-.badge { display: inline-block; font-size: 10px; padding: 3px 8px; border-radius: 10px; margin-top: 5px; font-weight: 600; }
-.bm { background: #e8eaf6; color: #3949ab; }
-.ba { background: #e8f5e9; color: #2e7d32; }
-.cardio-card { background: #fff3f3; border: 1px solid #ffd0d0; border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; }
-.cardio-icon { font-size: 26px; }
-.cardio-title { font-size: 15px; font-weight: 600; color: #c62828; }
-.cardio-sub { font-size: 13px; color: #e57373; margin-top: 2px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#04080f;min-height:100vh}
+.app{width:100%;max-width:480px;margin:0 auto;padding-bottom:2rem}
+
+/* HEADER */
+.g-header{position:relative;padding:2.5rem 1.1rem 1.1rem;overflow:hidden;background:#080d14}
+.g-header-bg{position:absolute;inset:0;background:radial-gradient(ellipse 130% 110% at 50% -10%,rgba(56,139,253,0.22) 0%,rgba(88,60,220,0.12) 45%,transparent 75%);pointer-events:none}
+.g-header-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(56,139,253,0.7),rgba(139,92,246,0.7),transparent)}
+.g-header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;position:relative}
+.g-header-icon{width:38px;height:38px;border-radius:11px;background:rgba(56,139,253,0.15);border:1px solid rgba(56,139,253,0.3);display:flex;align-items:center;justify-content:center;font-size:20px}
+.g-streak{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:5px 11px}
+.g-streak-dot{width:7px;height:7px;border-radius:50%;background:#3fb950;box-shadow:0 0 6px #3fb950}
+.g-streak span{font-size:11px;color:rgba(255,255,255,0.6)}
+.g-title{font-size:24px;font-weight:700;color:#e6edf3;letter-spacing:-0.5px;position:relative}
+.g-title span{color:#79b8ff}
+.g-sub{font-size:12px;color:rgba(255,255,255,0.35);margin-top:3px;position:relative}
+.g-stats{display:flex;gap:8px;margin-top:14px;position:relative}
+.g-stat{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:9px 10px}
+.g-stat-n{font-size:17px;font-weight:600;color:#e6edf3}
+.g-stat-n small{font-size:11px;color:rgba(255,255,255,0.35);font-weight:400}
+.g-stat-l{font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px}
+
+/* TABS */
+.g-tabs{display:flex;gap:5px;padding:10px 10px 6px;background:#080d14;border-bottom:1px solid rgba(255,255,255,0.05)}
+.g-chip{flex:1;padding:7px 2px;border-radius:10px;font-size:12px;font-weight:500;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.03);cursor:pointer;text-align:center;position:relative;transition:all .15s}
+.g-chip.on{background:rgba(56,139,253,0.15);color:#79b8ff;border-color:rgba(56,139,253,0.35)}
+.g-chip .today-dot{display:none;position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#3fb950;box-shadow:0 0 5px #3fb950}
+.g-chip.today .today-dot{display:block}
+
+/* GROUP LABEL */
+.g-group{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.9px;color:rgba(255,255,255,0.25);padding:12px 14px 5px}
+
+/* CARDS */
+.g-body{padding:0 10px 14px}
+.g-card{position:relative;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;display:flex;align-items:center;gap:10px;padding:10px;margin-bottom:8px;overflow:hidden}
+.g-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.04) 0%,transparent 60%);pointer-events:none}
+.g-card-accent{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#388bfd,#8b5cf6);border-radius:3px 0 0 3px}
+.g-img{width:60px;height:60px;border-radius:10px;flex-shrink:0;overflow:hidden;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08)}
+.g-img img{width:100%;height:100%;object-fit:cover}
+.g-info{flex:1;min-width:0;padding-left:2px}
+.g-name{font-size:13px;font-weight:600;color:#e6edf3;line-height:1.3}
+.g-sets{font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px}
+.g-badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:6px;margin-top:5px;background:rgba(56,139,253,0.12);color:#79b8ff;font-weight:600;border:1px solid rgba(56,139,253,0.2)}
+.g-badge-green{background:rgba(63,185,80,0.1);color:#3fb950;border-color:rgba(63,185,80,0.2)}
+.g-badge-purple{background:rgba(139,92,246,0.12);color:#c084fc;border-color:rgba(139,92,246,0.2)}
+
+/* CARDIO */
+.g-cardio{background:rgba(248,81,73,0.07);border:1px solid rgba(248,81,73,0.18);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;margin:0 10px 14px}
+.g-cardio::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(248,81,73,0.07) 0%,transparent 60%);pointer-events:none}
+.g-cardio-icon{font-size:22px}
+.g-cardio-t{font-size:13px;font-weight:600;color:#e6edf3}
+.g-cardio-s{font-size:11px;color:rgba(255,255,255,0.35);margin-top:1px}
+
+/* DESCANSO */
+.g-rest{margin:1.5rem 1rem;background:rgba(63,185,80,0.06);border:1px solid rgba(63,185,80,0.15);border-radius:16px;padding:2rem 1.2rem;text-align:center}
+.g-rest-icon{font-size:40px;margin-bottom:12px}
+.g-rest-title{font-size:18px;font-weight:700;color:#e6edf3;margin-bottom:6px}
+.g-rest-sub{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6}
+.g-rest-badge{display:inline-block;margin-top:14px;font-size:11px;padding:4px 14px;border-radius:20px;background:rgba(63,185,80,0.12);color:#3fb950;border:1px solid rgba(63,185,80,0.25);font-weight:600}
+
+.day-panel{display:none}
+.day-panel.active{display:block}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="header">
-    <h1>💪 Ficha de Treino</h1>
-    <p>Semana completa · 5 dias</p>
-  </div>
-  <div class="days-scroll">
-    <div class="day-chip active" data-day="0">Seg</div>
-    <div class="day-chip" data-day="1">Ter</div>
-    <div class="day-chip" data-day="2">Qua</div>
-    <div class="day-chip" data-day="3">Qui</div>
-    <div class="day-chip" data-day="4">Sex</div>
-  </div>
-  <div class="tab-spacer"></div>
 
-  <!-- SEG: Peito + Tríceps -->
-  <div class="day-panel active" id="day-0">
-    <p class="group-label">Peito + Tríceps</p>
-    <div class="exercises">
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino na máquina"></div>
-        <div class="ex-info"><div class="ex-name">Supino na máquina</div><div class="ex-sets">4 séries · 8–12 reps</div><span class="badge bm">Peitoral</span></div>
-      </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt="Peck Deck"></div>
-        <div class="ex-info"><div class="ex-name">Peck Deck (voador)</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Peitoral</span></div>
-      </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Incline_Chest_Press/0.jpg" alt="Supino inclinado"></div>
-        <div class="ex-info"><div class="ex-name">Supino inclinado na máquina</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Peitoral superior</span></div>
-      </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg" alt="Tríceps polia"></div>
-        <div class="ex-info"><div class="ex-name">Tríceps na polia</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Tríceps</span></div>
-      </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg" alt="Tríceps corda"></div>
-        <div class="ex-info"><div class="ex-name">Tríceps corda</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Tríceps</span></div>
+  <!-- HEADER -->
+  <div class="g-header">
+    <div class="g-header-bg"></div>
+    <div class="g-header-line"></div>
+    <div class="g-header-top">
+      <div class="g-header-icon">💪</div>
+      <div class="g-streak">
+        <div class="g-streak-dot"></div>
+        <span>5 dias ativos</span>
       </div>
     </div>
-    <div class="cardio-card"><div class="cardio-icon">🏃</div><div><div class="cardio-title">Cardio</div><div class="cardio-sub">20 minutos</div></div></div>
+    <div class="g-title">Ficha de <span>Treino</span></div>
+    <div class="g-sub">Semana completa · 5 dias</div>
+    <div class="g-stats">
+      <div class="g-stat"><div class="g-stat-n">25</div><div class="g-stat-l">Exercícios</div></div>
+      <div class="g-stat"><div class="g-stat-n">5</div><div class="g-stat-l">Dias</div></div>
+      <div class="g-stat"><div class="g-stat-n">~90<small>min</small></div><div class="g-stat-l">Por dia</div></div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="g-tabs">
+    <div class="g-chip" data-day="0">Seg<span class="today-dot"></span></div>
+    <div class="g-chip" data-day="1">Ter<span class="today-dot"></span></div>
+    <div class="g-chip" data-day="2">Qua<span class="today-dot"></span></div>
+    <div class="g-chip" data-day="3">Qui<span class="today-dot"></span></div>
+    <div class="g-chip" data-day="4">Sex<span class="today-dot"></span></div>
+  </div>
+
+  <!-- SEG: Peito + Tríceps -->
+  <div class="day-panel" id="day-0">
+    <div class="g-group">Peito + Tríceps</div>
+    <div class="g-body">
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino na máquina"></div>
+        <div class="g-info"><div class="g-name">Supino na máquina</div><div class="g-sets">4 séries · 8–12 reps</div><span class="g-badge">Peitoral</span></div>
+      </div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt="Peck Deck"></div>
+        <div class="g-info"><div class="g-name">Peck Deck (voador)</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge">Peitoral</span></div>
+      </div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Incline_Chest_Press/0.jpg" alt="Supino inclinado"></div>
+        <div class="g-info"><div class="g-name">Supino inclinado na máquina</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge">Peitoral superior</span></div>
+      </div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg" alt="Tríceps polia"></div>
+        <div class="g-info"><div class="g-name">Tríceps na polia</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge g-badge-purple">Tríceps</span></div>
+      </div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg" alt="Tríceps corda"></div>
+        <div class="g-info"><div class="g-name">Tríceps corda</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge g-badge-purple">Tríceps</span></div>
+      </div>
+    </div>
+    <div class="g-cardio"><div class="g-cardio-icon">🏃</div><div><div class="g-cardio-t">Cardio</div><div class="g-cardio-s">20 minutos</div></div></div>
   </div>
 
   <!-- TER: Costas + Bíceps -->
   <div class="day-panel" id="day-1">
-    <p class="group-label">Costas + Bíceps</p>
-    <div class="exercises">
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div>
-        <div class="ex-info"><div class="ex-name">Puxada frontal</div><div class="ex-sets">4 séries · 8–12 reps</div><span class="badge bm">Costas</span></div>
+    <div class="g-group">Costas + Bíceps</div>
+    <div class="g-body">
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div>
+        <div class="g-info"><div class="g-name">Puxada frontal</div><div class="g-sets">4 séries · 8–12 reps</div><span class="g-badge">Costas</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg" alt="Remada baixa"></div>
-        <div class="ex-info"><div class="ex-name">Remada baixa</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Costas</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg" alt="Remada baixa"></div>
+        <div class="g-info"><div class="g-name">Remada baixa</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge">Costas</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Iso_Row/0.jpg" alt="Remada máquina"></div>
-        <div class="ex-info"><div class="ex-name">Remada na máquina</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Costas</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Iso_Row/0.jpg" alt="Remada máquina"></div>
+        <div class="g-info"><div class="g-name">Remada na máquina</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge">Costas</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg" alt="Rosca bíceps máquina"></div>
-        <div class="ex-info"><div class="ex-name">Rosca bíceps na máquina</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Bíceps</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg" alt="Rosca bíceps"></div>
+        <div class="g-info"><div class="g-name">Rosca bíceps na máquina</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge g-badge-purple">Bíceps</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Preacher_Curl/0.jpg" alt="Rosca na polia"></div>
-        <div class="ex-info"><div class="ex-name">Rosca na polia</div><div class="ex-sets">3 séries · 10–12 reps</div><span class="badge bm">Bíceps</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Preacher_Curl/0.jpg" alt="Rosca polia"></div>
+        <div class="g-info"><div class="g-name">Rosca na polia</div><div class="g-sets">3 séries · 10–12 reps</div><span class="g-badge g-badge-purple">Bíceps</span></div>
       </div>
     </div>
-    <div class="cardio-card"><div class="cardio-icon">🏃</div><div><div class="cardio-title">Cardio</div><div class="cardio-sub">20 minutos</div></div></div>
+    <div class="g-cardio"><div class="g-cardio-icon">🏃</div><div><div class="g-cardio-t">Cardio</div><div class="g-cardio-s">20 minutos</div></div></div>
   </div>
 
   <!-- QUA: Perna -->
   <div class="day-panel" id="day-2">
-    <p class="group-label">Perna</p>
-    <div class="exercises">
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div>
-        <div class="ex-info"><div class="ex-name">Leg Press</div><div class="ex-sets">4 séries · 10–12 reps</div><span class="badge bm">Quadríceps</span></div>
+    <div class="g-group">Perna</div>
+    <div class="g-body">
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div>
+        <div class="g-info"><div class="g-name">Leg Press</div><div class="g-sets">4 séries · 10–12 reps</div><span class="g-badge g-badge-green">Quadríceps</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg" alt="Cadeira extensora"></div>
-        <div class="ex-info"><div class="ex-name">Cadeira extensora</div><div class="ex-sets">3 séries · 12 reps</div><span class="badge bm">Quadríceps</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg" alt="Cadeira extensora"></div>
+        <div class="g-info"><div class="g-name">Cadeira extensora</div><div class="g-sets">3 séries · 12 reps</div><span class="g-badge g-badge-green">Quadríceps</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg" alt="Cadeira flexora"></div>
-        <div class="ex-info"><div class="ex-name">Cadeira flexora</div><div class="ex-sets">3 séries · 12 reps</div><span class="badge bm">Isquiotibiais</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg" alt="Cadeira flexora"></div>
+        <div class="g-info"><div class="g-name">Cadeira flexora</div><div class="g-sets">3 séries · 12 reps</div><span class="g-badge g-badge-green">Isquiotibiais</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg" alt="Panturrilha"></div>
-        <div class="ex-info"><div class="ex-name">Panturrilha na máquina</div><div class="ex-sets">4 séries · 15–20 reps</div><span class="badge bm">Panturrilha</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg" alt="Panturrilha"></div>
+        <div class="g-info"><div class="g-name">Panturrilha na máquina</div><div class="g-sets">4 séries · 15–20 reps</div><span class="g-badge g-badge-green">Panturrilha</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal máquina"></div>
-        <div class="ex-info"><div class="ex-name">Abdominal na máquina</div><div class="ex-sets">3 séries · 15 reps</div><span class="badge ba">Abdômen</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div>
+        <div class="g-info"><div class="g-name">Abdominal na máquina</div><div class="g-sets">3 séries · 15 reps</div><span class="g-badge">Abdômen</span></div>
       </div>
     </div>
-    <div class="cardio-card"><div class="cardio-icon">🏃</div><div><div class="cardio-title">Cardio</div><div class="cardio-sub">15–20 minutos</div></div></div>
+    <div class="g-cardio"><div class="g-cardio-icon">🏃</div><div><div class="g-cardio-t">Cardio</div><div class="g-cardio-s">15–20 minutos</div></div></div>
   </div>
 
   <!-- QUI: Ombro + Abdômen -->
   <div class="day-panel" id="day-3">
-    <p class="group-label">Ombro + Abdômen</p>
-    <div class="exercises">
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento máquina"></div>
-        <div class="ex-info"><div class="ex-name">Desenvolvimento na máquina</div><div class="ex-sets">4 séries · 10–12 reps</div><span class="badge bm">Ombro</span></div>
+    <div class="g-group">Ombro + Abdômen</div>
+    <div class="g-body">
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento"></div>
+        <div class="g-info"><div class="g-name">Desenvolvimento na máquina</div><div class="g-sets">4 séries · 10–12 reps</div><span class="g-badge">Ombro</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg" alt="Elevação lateral"></div>
-        <div class="ex-info"><div class="ex-name">Elevação lateral na máquina</div><div class="ex-sets">3 séries · 12–15 reps</div><span class="badge bm">Deltóide lateral</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg" alt="Elevação lateral"></div>
+        <div class="g-info"><div class="g-name">Elevação lateral na máquina</div><div class="g-sets">3 séries · 12–15 reps</div><span class="g-badge">Deltóide lateral</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg" alt="Crucifixo inverso"></div>
-        <div class="ex-info"><div class="ex-name">Crucifixo inverso na máquina</div><div class="ex-sets">3 séries · 12–15 reps</div><span class="badge bm">Deltóide posterior</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg" alt="Crucifixo inverso"></div>
+        <div class="g-info"><div class="g-name">Crucifixo inverso na máquina</div><div class="g-sets">3 séries · 12–15 reps</div><span class="g-badge">Deltóide posterior</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div>
-        <div class="ex-info"><div class="ex-name">Abdominal na máquina</div><div class="ex-sets">3 séries · 15 reps</div><span class="badge ba">Abdômen</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div>
+        <div class="g-info"><div class="g-name">Abdominal na máquina</div><div class="g-sets">3 séries · 15 reps</div><span class="g-badge">Abdômen</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg" alt="Prancha"></div>
-        <div class="ex-info"><div class="ex-name">Prancha</div><div class="ex-sets">3 séries · 20–40 segundos</div><span class="badge ba">Abdômen</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg" alt="Prancha"></div>
+        <div class="g-info"><div class="g-name">Prancha</div><div class="g-sets">3 séries · 20–40 segundos</div><span class="g-badge">Abdômen</span></div>
       </div>
     </div>
-    <div class="cardio-card"><div class="cardio-icon">🏃</div><div><div class="cardio-title">Cardio</div><div class="cardio-sub">20 minutos</div></div></div>
+    <div class="g-cardio"><div class="g-cardio-icon">🏃</div><div><div class="g-cardio-t">Cardio</div><div class="g-cardio-s">20 minutos</div></div></div>
   </div>
 
   <!-- SEX: Corpo Inteiro -->
   <div class="day-panel" id="day-4">
-    <p class="group-label">Corpo Inteiro · Força</p>
-    <div class="exercises">
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino máquina"></div>
-        <div class="ex-info"><div class="ex-name">Supino na máquina</div><div class="ex-sets">3 séries · 8 reps</div><span class="badge bm">Peitoral</span></div>
+    <div class="g-group">Corpo Inteiro · Força</div>
+    <div class="g-body">
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino"></div>
+        <div class="g-info"><div class="g-name">Supino na máquina</div><div class="g-sets">3 séries · 8 reps</div><span class="g-badge">Peitoral</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div>
-        <div class="ex-info"><div class="ex-name">Puxada frontal</div><div class="ex-sets">3 séries · 8 reps</div><span class="badge bm">Costas</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div>
+        <div class="g-info"><div class="g-name">Puxada frontal</div><div class="g-sets">3 séries · 8 reps</div><span class="g-badge">Costas</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div>
-        <div class="ex-info"><div class="ex-name">Leg Press</div><div class="ex-sets">3 séries · 10 reps</div><span class="badge bm">Perna</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div>
+        <div class="g-info"><div class="g-name">Leg Press</div><div class="g-sets">3 séries · 10 reps</div><span class="g-badge g-badge-green">Perna</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento"></div>
-        <div class="ex-info"><div class="ex-name">Desenvolvimento na máquina</div><div class="ex-sets">3 séries · 10 reps</div><span class="badge bm">Ombro</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento"></div>
+        <div class="g-info"><div class="g-name">Desenvolvimento na máquina</div><div class="g-sets">3 séries · 10 reps</div><span class="g-badge">Ombro</span></div>
       </div>
-      <div class="exercise-card">
-        <div class="ex-img-wrap"><img class="ex-img" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div>
-        <div class="ex-info"><div class="ex-name">Abdominal</div><div class="ex-sets">3 séries · 15 reps</div><span class="badge ba">Abdômen</span></div>
+      <div class="g-card">
+        <div class="g-card-accent"></div>
+        <div class="g-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal"></div>
+        <div class="g-info"><div class="g-name">Abdominal</div><div class="g-sets">3 séries · 15 reps</div><span class="g-badge">Abdômen</span></div>
       </div>
     </div>
-    <div class="cardio-card"><div class="cardio-icon">🏃</div><div><div class="cardio-title">Cardio leve</div><div class="cardio-sub">15 minutos</div></div></div>
+    <div class="g-cardio"><div class="g-cardio-icon">🏃</div><div><div class="g-cardio-t">Cardio leve</div><div class="g-cardio-s">15 minutos</div></div></div>
+  </div>
+
+  <!-- DESCANSO (sáb/dom) -->
+  <div class="day-panel" id="day-rest">
+    <div class="g-rest">
+      <div class="g-rest-icon">😴</div>
+      <div class="g-rest-title">Dia de Descanso</div>
+      <div class="g-rest-sub">Seu corpo cresce durante o descanso.<br>Aproveite para recuperar e hidratar bem.</div>
+      <span class="g-rest-badge">Volte amanhã 💪</span>
+    </div>
   </div>
 
 </div>
+
 <script>
-document.querySelectorAll('.day-chip').forEach(function(chip) {
+// Sincronia com dia atual
+// JS: 0=dom, 1=seg, 2=ter, 3=qua, 4=qui, 5=sex, 6=sab
+// Nosso mapa: seg=0, ter=1, qua=2, qui=3, sex=4
+var jsDay = new Date().getDay();
+var dayMap = { 1:0, 2:1, 3:2, 4:3, 5:4 };
+var activeDay = (dayMap[jsDay] !== undefined) ? dayMap[jsDay] : -1;
+
+// Marca bolinha verde no dia atual (se for dia de treino)
+if (activeDay >= 0) {
+  var chip = document.querySelector('.g-chip[data-day="' + activeDay + '"]');
+  if (chip) chip.classList.add('today');
+}
+
+function showDay(idx) {
+  document.querySelectorAll('.g-chip').forEach(function(c) { c.classList.remove('on'); });
+  document.querySelectorAll('.day-panel').forEach(function(p) { p.classList.remove('active'); });
+  if (idx >= 0) {
+    var chip = document.querySelector('.g-chip[data-day="' + idx + '"]');
+    if (chip) chip.classList.add('on');
+    var panel = document.getElementById('day-' + idx);
+    if (panel) panel.classList.add('active');
+  } else {
+    document.getElementById('day-rest').classList.add('active');
+  }
+}
+
+// Abre no dia atual automaticamente
+showDay(activeDay);
+
+// Clique nas abas
+document.querySelectorAll('.g-chip').forEach(function(chip) {
   chip.addEventListener('click', function() {
-    document.querySelectorAll('.day-chip').forEach(function(c) { c.classList.remove('active'); });
-    document.querySelectorAll('.day-panel').forEach(function(p) { p.classList.remove('active'); });
-    chip.classList.add('active');
-    document.getElementById('day-' + chip.dataset.day).classList.add('active');
+    showDay(parseInt(this.dataset.day));
   });
 });
 </script>
