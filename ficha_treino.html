@@ -17,15 +17,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 .lg-header{margin:0 12px;border-radius:22px;padding:16px 18px 14px;position:relative;overflow:hidden;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14)}
 .lg-header::before{content:'';position:absolute;inset:0;border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,rgba(255,255,255,0.03) 40%,transparent 70%);pointer-events:none}
 .lg-header::after{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);pointer-events:none}
-
-/* Ícone + pill na mesma linha do título */
 .lg-title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;position:relative}
 .lg-title{font-size:22px;font-weight:700;color:rgba(255,255,255,0.95);letter-spacing:-0.5px;flex:1;padding:0 10px}
 .lg-title em{font-style:normal;color:#93c5fd}
 .lg-pill{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:5px 11px;flex-shrink:0}
 .lg-pill-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399}
 .lg-pill span{font-size:11px;color:rgba(255,255,255,0.65);font-weight:500}
-
 .lg-sub{font-size:12px;color:rgba(255,255,255,0.38);margin-bottom:12px;position:relative;padding-left:2px}
 .lg-stats{display:flex;gap:8px;position:relative}
 .lg-stat{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:9px 10px;position:relative;overflow:hidden}
@@ -47,9 +44,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 
 /* CARDS */
 .lg-body{padding:0 12px 12px}
-.lg-card{position:relative;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:18px;display:flex;align-items:center;gap:11px;padding:11px;margin-bottom:8px;overflow:hidden}
+.lg-card{position:relative;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:11px;margin-bottom:8px;overflow:hidden;transition:border-color .3s}
+.lg-card.card-done{border-color:rgba(52,211,153,0.4);background:rgba(52,211,153,0.04)}
 .lg-card::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent);pointer-events:none}
 .lg-card::after{content:'';position:absolute;inset:0;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,transparent 50%);pointer-events:none}
+.lg-card-top{display:flex;align-items:center;gap:11px}
 .lg-accent{position:absolute;left:0;top:8px;bottom:8px;width:3px;background:linear-gradient(180deg,rgba(147,197,253,0.8),rgba(167,139,250,0.5));border-radius:0 3px 3px 0}
 .lg-img{width:58px;height:58px;border-radius:12px;flex-shrink:0;overflow:hidden;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.09);position:relative;z-index:1}
 .lg-img img{width:100%;height:100%;object-fit:cover;opacity:.9}
@@ -60,6 +59,44 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 .lb-blue{background:rgba(147,197,253,0.1);color:#93c5fd;border:1px solid rgba(147,197,253,0.18)}
 .lb-green{background:rgba(52,211,153,0.1);color:#34d399;border:1px solid rgba(52,211,153,0.18)}
 .lb-purple{background:rgba(167,139,250,0.1);color:#c4b5fd;border:1px solid rgba(167,139,250,0.18)}
+
+/* TOGGLE BUTTON */
+.lg-toggle{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;position:relative;z-index:2;-webkit-tap-highlight-color:transparent}
+.lg-toggle svg{width:14px;height:14px;stroke:rgba(255,255,255,0.4);transition:transform .25s}
+.lg-card.expanded .lg-toggle svg{transform:rotate(180deg)}
+.lg-card.card-done .lg-toggle{background:rgba(52,211,153,0.12);border-color:rgba(52,211,153,0.3)}
+.lg-card.card-done .lg-toggle svg{stroke:#34d399}
+
+/* TRACKER PANEL */
+.lg-tracker{display:none;margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.06);position:relative;z-index:2}
+.lg-card.expanded .lg-tracker{display:block}
+
+/* SET BLOCKS */
+.set-block{padding:8px 0 4px}
+.set-block.set-locked{opacity:0.3;pointer-events:none}
+.set-block.set-done{pointer-events:none}
+.set-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.set-num{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,0.25)}
+.set-status{font-size:12px;font-weight:700;color:#34d399}
+.set-sep{height:1px;background:rgba(255,255,255,0.05);margin:6px 0}
+
+/* WEIGHT DISPLAY */
+.wt-display{text-align:center;margin-bottom:8px}
+.wt-val{font-size:26px;font-weight:700;color:rgba(255,255,255,0.92);letter-spacing:-1px}
+.wt-unit{font-size:12px;color:rgba(255,255,255,0.3);margin-left:2px}
+.wt-clear{font-size:10px;color:rgba(255,255,255,0.2);cursor:pointer;text-decoration:underline;margin-left:8px;-webkit-tap-highlight-color:transparent}
+
+/* CHIPS */
+.chips-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,0.2);margin-bottom:7px}
+.chips-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip-btn{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;transition:all .15s}
+.chip-btn.active-w{background:rgba(147,197,253,0.15);border-color:rgba(147,197,253,0.45);color:#93c5fd;box-shadow:0 0 10px rgba(147,197,253,0.12)}
+.chip-btn.active-t{background:rgba(52,211,153,0.15);border-color:rgba(52,211,153,0.45);color:#34d399;box-shadow:0 0 10px rgba(52,211,153,0.12)}
+
+/* CONFIRM BUTTON */
+.set-confirm{width:100%;padding:9px;border-radius:12px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .2s;margin-top:2px}
+.set-confirm.ready{background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.35);color:#34d399}
+.set-confirm.done-btn{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.2);color:rgba(52,211,153,0.5);opacity:.7}
 
 /* CARDIO */
 .lg-cardio{margin:0 12px 14px;background:rgba(248,81,73,0.07);border:1px solid rgba(248,81,73,0.18);border-radius:18px;padding:13px 15px;display:flex;align-items:center;gap:13px;position:relative;overflow:hidden}
@@ -77,24 +114,68 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 .lg-rest-sub{font-size:12px;color:rgba(255,255,255,0.38);line-height:1.6}
 .lg-rest-badge{display:inline-block;margin-top:14px;font-size:11px;padding:5px 15px;border-radius:20px;background:rgba(52,211,153,0.1);color:#34d399;border:1px solid rgba(52,211,153,0.22);font-weight:600}
 
+/* REVIEW BUTTON */
+.review-bar{margin:0 12px 12px}
+.review-btn{width:100%;padding:14px;border-radius:18px;font-size:14px;font-weight:700;color:#04080f;background:linear-gradient(135deg,#93c5fd,#c4b5fd);border:none;cursor:pointer;letter-spacing:-0.2px;opacity:.3;pointer-events:none;transition:all .25s}
+.review-btn.active{opacity:1;pointer-events:auto;box-shadow:0 4px 20px rgba(147,197,253,0.3)}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(4,8,15,0.88);z-index:100;display:none;align-items:flex-end}
+.overlay.open{display:flex}
+.sheet{width:100%;max-width:480px;margin:0 auto;background:#0d1420;border-radius:28px 28px 0 0;border:1px solid rgba(255,255,255,0.1);border-bottom:none;max-height:90vh;overflow-y:auto;position:relative}
+.sheet-handle{width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin:14px auto 0}
+.sheet-close{position:absolute;top:14px;right:16px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.07);border:none;color:rgba(255,255,255,0.5);font-size:16px;cursor:pointer;z-index:2;line-height:28px;text-align:center}
+
+/* STEP: PERGUNTAS */
+.step-q{padding:18px 20px 28px}
+.step-title{font-size:17px;font-weight:700;color:rgba(255,255,255,0.95);letter-spacing:-0.3px;margin-bottom:3px}
+.step-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:14px}
+.progress-bar{display:flex;gap:5px;margin-bottom:20px}
+.prog-dot{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,0.08)}
+.prog-dot.pdone{background:linear-gradient(90deg,#93c5fd,#c4b5fd)}
+.prog-dot.pactive{background:rgba(147,197,253,0.4)}
+.q-text{font-size:14px;font-weight:600;color:rgba(255,255,255,0.88);line-height:1.4;margin-bottom:14px}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{padding:11px 14px;border-radius:14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);font-size:13px;font-weight:500;cursor:pointer;text-align:left;display:flex;align-items:center;gap:10px;-webkit-tap-highlight-color:transparent;transition:all .15s}
+.q-opt.selected{background:rgba(147,197,253,0.1);border-color:rgba(147,197,253,0.35);color:#93c5fd}
+.q-emoji{font-size:16px;flex-shrink:0}
+
+/* STEP: RESULTADO */
+.step-r{display:none}
+.result-header{padding:16px 20px 14px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.result-title{font-size:17px;font-weight:700;color:rgba(255,255,255,0.95)}
+.result-sub{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px}
+
+/* CHART */
+.chart-wrap{padding:16px 20px 0}
+.chart-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,0.2);margin-bottom:10px}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.bar-name{font-size:10px;color:rgba(255,255,255,0.4);width:88px;flex-shrink:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.bar-track{flex:1;height:7px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#93c5fd,#c4b5fd);width:0%;transition:width .6s cubic-bezier(.25,.46,.45,.94)}
+.bar-val{font-size:10px;color:rgba(255,255,255,0.4);width:44px;text-align:right;flex-shrink:0}
+
+/* AI */
+.ai-wrap{padding:14px 20px 28px}
+.ai-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,0.2);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.ai-dot{width:6px;height:6px;border-radius:50%;background:#c4b5fd;box-shadow:0 0 6px #c4b5fd;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.ai-text{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.7}
+.ai-text.loading{color:rgba(255,255,255,0.22);font-style:italic}
+
 .day-panel{display:none}
 .day-panel.active{display:block}
 </style>
 </head>
 <body>
 <div class="app">
-  <div class="blob1"></div>
-  <div class="blob2"></div>
-  <div class="blob3"></div>
+  <div class="blob1"></div><div class="blob2"></div><div class="blob3"></div>
   <div class="content">
 
     <div class="lg-header">
       <div class="lg-title-row">
         <div class="lg-title">Ficha de <em>Treino</em></div>
-        <div class="lg-pill">
-          <div class="lg-pill-dot"></div>
-          <span>5 dias ativos</span>
-        </div>
+        <div class="lg-pill"><div class="lg-pill-dot"></div><span>5 dias ativos</span></div>
       </div>
       <div class="lg-sub">Semana completa · 5 dias</div>
       <div class="lg-stats">
@@ -112,69 +193,274 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
       <div class="lg-chip" data-day="4">Sex<span class="tdot"></span></div>
     </div>
 
-    <!-- SEG -->
+    <!-- SEG: Peito + Triceps -->
     <div class="day-panel" id="day-0">
       <div class="lg-group">Peito + Tríceps</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Peck Deck (voador)</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Incline_Chest_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Supino inclinado na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral superior</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Tríceps na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Tríceps corda</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div></div>
+        <div class="lg-card" data-name="Supino na máquina" data-sets="4" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Peck Deck (voador)" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt="Peck Deck"></div>
+            <div class="lg-info"><div class="lg-name">Peck Deck (voador)</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Supino inclinado na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Incline_Chest_Press/0.jpg" alt="Supino inclinado"></div>
+            <div class="lg-info"><div class="lg-name">Supino inclinado na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Peitoral superior</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Tríceps na polia" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown/0.jpg" alt="Tríceps na polia"></div>
+            <div class="lg-info"><div class="lg-name">Tríceps na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Tríceps corda" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Triceps_Pushdown_-_Rope_Attachment/0.jpg" alt="Tríceps corda"></div>
+            <div class="lg-info"><div class="lg-name">Tríceps corda</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Tríceps</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">20 minutos</div></div></div>
+      <div class="review-bar"><button class="review-btn" id="rbtn-0" onclick="openReview(0)">✦ Ver análise do treino</button></div>
     </div>
 
-    <!-- TER -->
+    <!-- TER: Costas + Biceps -->
     <div class="day-panel" id="day-1">
       <div class="lg-group">Costas + Bíceps</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Remada baixa</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Iso_Row/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Remada na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Rosca bíceps na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Preacher_Curl/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Rosca na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div></div>
+        <div class="lg-card" data-name="Puxada frontal" data-sets="4" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div>
+            <div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">4 séries · 8–12 reps</div><span class="lg-badge lb-blue">Costas</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Remada baixa" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Cable_Rows/0.jpg" alt="Remada baixa"></div>
+            <div class="lg-info"><div class="lg-name">Remada baixa</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Remada na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Iso_Row/0.jpg" alt="Remada na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Remada na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-blue">Costas</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Rosca bíceps na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Machine_Bicep_Curl/0.jpg" alt="Rosca bíceps na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Rosca bíceps na máquina</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Rosca na polia" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Preacher_Curl/0.jpg" alt="Rosca na polia"></div>
+            <div class="lg-info"><div class="lg-name">Rosca na polia</div><div class="lg-sets">3 séries · 10–12 reps</div><span class="lg-badge lb-purple">Bíceps</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">20 minutos</div></div></div>
+      <div class="review-bar"><button class="review-btn" id="rbtn-1" onclick="openReview(1)">✦ Ver análise do treino</button></div>
     </div>
 
-    <!-- QUA -->
+    <!-- QUA: Perna -->
     <div class="day-panel" id="day-2">
       <div class="lg-group">Perna</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Cadeira extensora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Cadeira flexora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Isquiotibiais</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Panturrilha na máquina</div><div class="lg-sets">4 séries · 15–20 reps</div><span class="lg-badge lb-green">Panturrilha</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
+        <div class="lg-card" data-name="Leg Press" data-sets="4" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div>
+            <div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Cadeira extensora" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg" alt="Cadeira extensora"></div>
+            <div class="lg-info"><div class="lg-name">Cadeira extensora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Quadríceps</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Cadeira flexora" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg" alt="Cadeira flexora"></div>
+            <div class="lg-info"><div class="lg-name">Cadeira flexora</div><div class="lg-sets">3 séries · 12 reps</div><span class="lg-badge lb-green">Isquiotibiais</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Panturrilha na máquina" data-sets="4" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Calf_Raises/0.jpg" alt="Panturrilha na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Panturrilha na máquina</div><div class="lg-sets">4 séries · 15–20 reps</div><span class="lg-badge lb-green">Panturrilha</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Abdominal na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">15–20 minutos</div></div></div>
+      <div class="review-bar"><button class="review-btn" id="rbtn-2" onclick="openReview(2)">✦ Ver análise do treino</button></div>
     </div>
 
-    <!-- QUI -->
+    <!-- QUI: Ombro + Abdomen -->
     <div class="day-panel" id="day-3">
       <div class="lg-group">Ombro + Abdômen</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-blue">Ombro</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Seated_Lateral_Raise/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Elevação lateral na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide lateral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cable_Rear_Delt_Fly/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Crucifixo inverso na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide posterior</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Prancha</div><div class="lg-sets">3 séries · 20–40 segundos</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
+        <div class="lg-card" data-name="Desenvolvimento na máquina" data-sets="4" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">4 séries · 10–12 reps</div><span class="lg-badge lb-blue">Ombro</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Elevação lateral na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg" alt="Elevação lateral"></div>
+            <div class="lg-info"><div class="lg-name">Elevação lateral na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide lateral</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Crucifixo inverso na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Bent-Over_Rear_Delt_Raise/0.jpg" alt="Crucifixo inverso"></div>
+            <div class="lg-info"><div class="lg-name">Crucifixo inverso na máquina</div><div class="lg-sets">3 séries · 12–15 reps</div><span class="lg-badge lb-blue">Deltóide posterior</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Abdominal na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt="Abdominal na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Abdominal na máquina</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Prancha" data-sets="3" data-type="bodyweight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg" alt="Prancha"></div>
+            <div class="lg-info"><div class="lg-name">Prancha</div><div class="lg-sets">3 séries · 20–40 segundos</div><span class="lg-badge lb-blue">Abdômen</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio</div><div class="lg-cardio-s">20 minutos</div></div></div>
+      <div class="review-bar"><button class="review-btn" id="rbtn-3" onclick="openReview(3)">✦ Ver análise do treino</button></div>
     </div>
 
-    <!-- SEX -->
+    <!-- SEX: Corpo Inteiro -->
     <div class="day-panel" id="day-4">
       <div class="lg-group">Corpo Inteiro · Força</div>
       <div class="lg-body">
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Peitoral</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Costas</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-green">Perna</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-blue">Ombro</span></div></div>
-        <div class="lg-card"><div class="lg-accent"></div><div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ab_Crunch_Machine/0.jpg" alt=""></div><div class="lg-info"><div class="lg-name">Abdominal</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div></div>
+        <div class="lg-card" data-name="Supino na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Chest_Press/0.jpg" alt="Supino na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Supino na máquina</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Peitoral</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Puxada frontal" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Puxada frontal"></div>
+            <div class="lg-info"><div class="lg-name">Puxada frontal</div><div class="lg-sets">3 séries · 8 reps</div><span class="lg-badge lb-blue">Costas</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Leg Press" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Press/0.jpg" alt="Leg Press"></div>
+            <div class="lg-info"><div class="lg-name">Leg Press</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-green">Perna</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Desenvolvimento na máquina" data-sets="3" data-type="weight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leverage_Shoulder_Press/0.jpg" alt="Desenvolvimento na máquina"></div>
+            <div class="lg-info"><div class="lg-name">Desenvolvimento na máquina</div><div class="lg-sets">3 séries · 10 reps</div><span class="lg-badge lb-blue">Ombro</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
+        <div class="lg-card" data-name="Abdominal" data-sets="3" data-type="bodyweight">
+          <div class="lg-accent"></div>
+          <div class="lg-card-top">
+            <div class="lg-img"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sit-Up/0.jpg" alt="Abdominal"></div>
+            <div class="lg-info"><div class="lg-name">Abdominal</div><div class="lg-sets">3 séries · 15 reps</div><span class="lg-badge lb-blue">Abdômen</span></div>
+            <div class="lg-toggle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+          </div>
+          <div class="lg-tracker"></div>
+        </div>
       </div>
       <div class="lg-cardio"><div class="lg-cardio-icon">🏃</div><div><div class="lg-cardio-t">Cardio leve</div><div class="lg-cardio-s">15 minutos</div></div></div>
+      <div class="review-bar"><button class="review-btn" id="rbtn-4" onclick="openReview(4)">✦ Ver análise do treino</button></div>
     </div>
 
     <!-- DESCANSO -->
@@ -189,30 +475,656 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sa
 
   </div>
 </div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="overlayClick(event)">
+  <div class="sheet" id="sheet">
+    <div class="sheet-handle"></div>
+    <button class="sheet-close" onclick="closeModal()">&#x2715;</button>
+
+    <!-- Passo 1: Perguntas -->
+    <div class="step-q" id="stepQ">
+      <div class="step-title" id="qTitle">Como foi o treino?</div>
+      <div class="step-sub">3 perguntas rápidas antes da análise</div>
+      <div class="progress-bar">
+        <div class="prog-dot pactive" id="pd0"></div>
+        <div class="prog-dot" id="pd1"></div>
+        <div class="prog-dot" id="pd2"></div>
+      </div>
+      <div id="qBlock"></div>
+    </div>
+
+    <!-- Passo 2: Resultado -->
+    <div class="step-r" id="stepR">
+      <div class="result-header">
+        <div class="result-title" id="rTitle">Análise</div>
+        <div class="result-sub" id="rSub"></div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-lbl" id="chartLbl">Volume por exercício</div>
+        <div id="chartBars"></div>
+      </div>
+      <div class="ai-wrap">
+        <div class="ai-lbl"><span class="ai-dot"></span>Análise IA</div>
+        <div class="ai-text loading" id="aiText">Gerando análise...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-var jsDay=new Date().getDay();
-var dayMap={1:0,2:1,3:2,4:3,5:4};
-var activeDay=(dayMap[jsDay]!==undefined)?dayMap[jsDay]:-1;
-if(activeDay>=0){
-  var c=document.querySelector('.lg-chip[data-day="'+activeDay+'"]');
-  if(c) c.classList.add('today');
+// ─── ESTADO GLOBAL ───────────────────────────────────────────────
+var WEIGHTS = [4, 8, 12, 16, 20];
+var TEMPOS  = [30, 45, 60, 90];
+var exState = {}; // chave -> { sets: [{val,chips,done},...], allDone }
+var reviewDayIdx = -1;
+var reviewData   = [];
+var qAnswers     = {};
+var qCurrent     = 0;
+
+var DAY_NAMES  = ['Segunda','Terca','Quarta','Quinta','Sexta'];
+var QUESTIONS  = [
+  {
+    key:'sensacao', text:'Como você se sentiu durante o treino?',
+    opts:[
+      {e:'🔥',l:'Voando — energia do início ao fim'},
+      {e:'💪',l:'Bem — completei tudo sem dificuldade'},
+      {e:'😤',l:'Difícil, mas terminei'},
+      {e:'😓',l:'Pesado — faltou gás hoje'}
+    ]
+  },
+  {
+    key:'dificuldade', text:'Qual exercício foi o mais desafiador?',
+    opts:[] // preenchido dinamicamente
+  },
+  {
+    key:'recuperacao', text:'Como está sua recuperação em relação ao treino anterior?',
+    opts:[
+      {e:'✅',l:'Recuperado 100% — pronto pra avançar'},
+      {e:'🆗',l:'Bem — leve cansaço muscular ainda'},
+      {e:'⚠️',l:'Médio — ainda sinto o treino passado'},
+      {e:'🔴',l:'Não recuperei — corpo ainda doendo'}
+    ]
+  }
+];
+
+// ─── HELPERS ─────────────────────────────────────────────────────
+function cardKey(card) {
+  var panel = card.closest('.day-panel');
+  var cards = panel.querySelectorAll('.lg-card');
+  var idx = 0;
+  for (var i = 0; i < cards.length; i++) {
+    if (cards[i] === card) { idx = i; break; }
+  }
+  return card.getAttribute('data-name') + '__' + idx;
 }
-function showDay(idx){
-  document.querySelectorAll('.lg-chip').forEach(function(c){c.classList.remove('on')});
-  document.querySelectorAll('.day-panel').forEach(function(p){p.classList.remove('active')});
-  if(idx>=0){
-    var chip=document.querySelector('.lg-chip[data-day="'+idx+'"]');
-    if(chip) chip.classList.add('on');
-    var panel=document.getElementById('day-'+idx);
-    if(panel) panel.classList.add('active');
+
+function isBW(card) {
+  return card.getAttribute('data-type') === 'bodyweight';
+}
+
+// ─── CONSTRUÇÃO DO TRACKER ───────────────────────────────────────
+function buildTracker(card) {
+  var tracker = card.querySelector('.lg-tracker');
+  var totalSets = parseInt(card.getAttribute('data-sets')) || 3;
+  var key = cardKey(card);
+  var bw = isBW(card);
+
+  // Inicializar estado (ES5 puro — sem Array.from com mapeamento)
+  if (!exState[key]) {
+    var initSets = [];
+    for (var i = 0; i < totalSets; i++) {
+      initSets.push({val: 0, chips: [], done: false});
+    }
+    exState[key] = {sets: initSets, allDone: false};
+  }
+
+  tracker.innerHTML = '';
+
+  for (var s = 0; s < totalSets; s++) {
+    buildSetBlock(tracker, card, key, s, totalSets, bw);
+  }
+
+  refreshVisibility(key, totalSets);
+}
+
+function buildSetBlock(tracker, card, key, setIdx, totalSets, bw) {
+  var sb = document.createElement('div');
+  sb.className = 'set-block';
+  sb.id = 'sb-' + key + '-' + setIdx;
+
+  // Cabeçalho
+  var hdr = document.createElement('div');
+  hdr.className = 'set-header';
+  var numEl = document.createElement('span');
+  numEl.className = 'set-num';
+  numEl.textContent = 'Serie ' + (setIdx + 1);
+  var stEl = document.createElement('span');
+  stEl.className = 'set-status';
+  stEl.id = 'ss-' + key + '-' + setIdx;
+  hdr.appendChild(numEl);
+  hdr.appendChild(stEl);
+  sb.appendChild(hdr);
+
+  if (bw) {
+    buildTempoSelector(sb, key, setIdx);
   } else {
-    document.getElementById('day-rest').classList.add('active');
+    buildWeightSelector(sb, key, setIdx);
+  }
+
+  // Botão confirmar
+  var btn = document.createElement('button');
+  btn.className = 'set-confirm';
+  btn.id = 'sc-' + key + '-' + setIdx;
+  btn.textContent = 'Confirmar serie ' + (setIdx + 1);
+  // Closure correta via IIFE
+  (function(k, si, c, b) {
+    btn.onclick = function() { confirmSet(k, si, c, b); };
+  })(key, setIdx, card, bw);
+  sb.appendChild(btn);
+
+  tracker.appendChild(sb);
+
+  // Separador (exceto após o último)
+  if (setIdx < totalSets - 1) {
+    var sep = document.createElement('div');
+    sep.className = 'set-sep';
+    tracker.appendChild(sep);
   }
 }
-showDay(activeDay);
-document.querySelectorAll('.lg-chip').forEach(function(chip){
-  chip.addEventListener('click',function(){showDay(parseInt(this.dataset.day))});
+
+function buildWeightSelector(sb, key, setIdx) {
+  // Display do peso
+  var disp = document.createElement('div');
+  disp.className = 'wt-display';
+  var valEl = document.createElement('span');
+  valEl.className = 'wt-val';
+  valEl.id = 'wv-' + key + '-' + setIdx;
+  valEl.textContent = '0';
+  var unitEl = document.createElement('span');
+  unitEl.className = 'wt-unit';
+  unitEl.textContent = 'kg';
+  var clrEl = document.createElement('span');
+  clrEl.className = 'wt-clear';
+  clrEl.textContent = 'limpar';
+  (function(k, si) {
+    clrEl.onclick = function() { clearWeight(k, si); };
+  })(key, setIdx);
+  disp.appendChild(valEl);
+  disp.appendChild(unitEl);
+  disp.appendChild(clrEl);
+  sb.appendChild(disp);
+
+  // Label
+  var lbl = document.createElement('div');
+  lbl.className = 'chips-label';
+  lbl.textContent = 'Anilhas (toque para somar)';
+  sb.appendChild(lbl);
+
+  // Chips
+  var row = document.createElement('div');
+  row.className = 'chips-row';
+  row.id = 'cr-' + key + '-' + setIdx;
+  for (var w = 0; w < WEIGHTS.length; w++) {
+    (function(weight, widx) {
+      var ch = document.createElement('div');
+      ch.className = 'chip-btn';
+      ch.textContent = weight + 'kg';
+      ch.onclick = function() { toggleWeight(key, setIdx, widx, ch); };
+      row.appendChild(ch);
+    })(WEIGHTS[w], w);
+  }
+  sb.appendChild(row);
+}
+
+function buildTempoSelector(sb, key, setIdx) {
+  // Display do tempo
+  var disp = document.createElement('div');
+  disp.className = 'wt-display';
+  var valEl = document.createElement('span');
+  valEl.className = 'wt-val';
+  valEl.id = 'wv-' + key + '-' + setIdx;
+  valEl.textContent = '0';
+  var unitEl = document.createElement('span');
+  unitEl.className = 'wt-unit';
+  unitEl.textContent = 'seg';
+  disp.appendChild(valEl);
+  disp.appendChild(unitEl);
+  sb.appendChild(disp);
+
+  // Label
+  var lbl = document.createElement('div');
+  lbl.className = 'chips-label';
+  lbl.textContent = 'Duração (segundos)';
+  sb.appendChild(lbl);
+
+  // Chips
+  var row = document.createElement('div');
+  row.className = 'chips-row';
+  row.id = 'cr-' + key + '-' + setIdx;
+  for (var t = 0; t < TEMPOS.length; t++) {
+    (function(tempo) {
+      var ch = document.createElement('div');
+      ch.className = 'chip-btn';
+      ch.textContent = tempo + 's';
+      ch.onclick = function() { selectTempo(key, setIdx, tempo, ch, row); };
+      row.appendChild(ch);
+    })(TEMPOS[t]);
+  }
+  sb.appendChild(row);
+}
+
+// ─── INTERAÇÕES DE PESO ──────────────────────────────────────────
+function toggleWeight(key, setIdx, widx, chipEl) {
+  var st = exState[key].sets[setIdx];
+  if (st.done) return;
+
+  // Toggle chip
+  var found = false;
+  for (var i = 0; i < st.chips.length; i++) {
+    if (st.chips[i] === widx) { found = true; break; }
+  }
+  if (found) {
+    var newChips = [];
+    for (var j = 0; j < st.chips.length; j++) {
+      if (st.chips[j] !== widx) newChips.push(st.chips[j]);
+    }
+    st.chips = newChips;
+    chipEl.classList.remove('active-w');
+  } else {
+    st.chips.push(widx);
+    chipEl.classList.add('active-w');
+  }
+
+  // Recalcular total
+  var total = 0;
+  for (var k = 0; k < st.chips.length; k++) {
+    total += WEIGHTS[st.chips[k]];
+  }
+  st.val = total;
+
+  var valEl = document.getElementById('wv-' + key + '-' + setIdx);
+  if (valEl) valEl.textContent = total;
+  updateConfirmBtn(key, setIdx, false);
+}
+
+function clearWeight(key, setIdx) {
+  var st = exState[key].sets[setIdx];
+  if (st.done) return;
+  st.val = 0;
+  st.chips = [];
+  var row = document.getElementById('cr-' + key + '-' + setIdx);
+  if (row) {
+    var chips = row.querySelectorAll('.chip-btn');
+    for (var i = 0; i < chips.length; i++) chips[i].classList.remove('active-w');
+  }
+  var valEl = document.getElementById('wv-' + key + '-' + setIdx);
+  if (valEl) valEl.textContent = '0';
+  updateConfirmBtn(key, setIdx, false);
+}
+
+function selectTempo(key, setIdx, tempo, chipEl, row) {
+  var st = exState[key].sets[setIdx];
+  if (st.done) return;
+  // Desmarcar todos
+  var chips = row.querySelectorAll('.chip-btn');
+  for (var i = 0; i < chips.length; i++) chips[i].classList.remove('active-t');
+  chipEl.classList.add('active-t');
+  st.val = tempo;
+  var valEl = document.getElementById('wv-' + key + '-' + setIdx);
+  if (valEl) valEl.textContent = tempo;
+  updateConfirmBtn(key, setIdx, true);
+}
+
+function updateConfirmBtn(key, setIdx, bw) {
+  var st = exState[key].sets[setIdx];
+  var btn = document.getElementById('sc-' + key + '-' + setIdx);
+  if (!btn) return;
+  if (st.val > 0) {
+    btn.classList.add('ready');
+    btn.textContent = bw
+      ? 'Confirmar ' + st.val + 's \u2713'
+      : 'Confirmar ' + st.val + 'kg \u2713';
+  } else {
+    btn.classList.remove('ready');
+    btn.textContent = 'Confirmar serie ' + (setIdx + 1);
+  }
+}
+
+// ─── CONFIRMAÇÃO DE SÉRIE ────────────────────────────────────────
+function confirmSet(key, setIdx, card, bw) {
+  var st = exState[key].sets[setIdx];
+  if (st.val === 0 || st.done) return;
+  st.done = true;
+
+  // Atualizar bloco visual
+  var sb = document.getElementById('sb-' + key + '-' + setIdx);
+  if (sb) sb.classList.add('set-done');
+
+  var ss = document.getElementById('ss-' + key + '-' + setIdx);
+  if (ss) ss.textContent = (bw ? st.val + 's' : st.val + 'kg') + ' \u2713';
+
+  var btn = document.getElementById('sc-' + key + '-' + setIdx);
+  if (btn) {
+    btn.className = 'set-confirm done-btn';
+    btn.textContent = bw ? st.val + 's concluido' : st.val + 'kg concluido';
+  }
+
+  // Verificar se todas as séries do exercício estão feitas (ES5)
+  var allDone = true;
+  for (var i = 0; i < exState[key].sets.length; i++) {
+    if (!exState[key].sets[i].done) { allDone = false; break; }
+  }
+
+  if (allDone) {
+    exState[key].allDone = true;
+    card.classList.add('card-done');
+    card.classList.remove('expanded');
+    checkDayDone(card.closest('.day-panel'));
+  } else {
+    refreshVisibility(key, exState[key].sets.length);
+  }
+}
+
+function refreshVisibility(key, totalSets) {
+  // Encontrar próxima série não feita
+  var nextIdx = -1;
+  for (var i = 0; i < totalSets; i++) {
+    if (!exState[key].sets[i].done) { nextIdx = i; break; }
+  }
+  for (var j = 0; j < totalSets; j++) {
+    var sb = document.getElementById('sb-' + key + '-' + j);
+    if (!sb) continue;
+    if (exState[key].sets[j].done) {
+      sb.classList.remove('set-locked');
+      sb.classList.add('set-done');
+    } else if (j === nextIdx) {
+      sb.classList.remove('set-locked', 'set-done');
+    } else {
+      sb.classList.add('set-locked');
+      sb.classList.remove('set-done');
+    }
+  }
+}
+
+function checkDayDone(panel) {
+  var cards = panel.querySelectorAll('.lg-card');
+  var allDone = true;
+  for (var i = 0; i < cards.length; i++) {
+    var k = cardKey(cards[i]);
+    if (!exState[k] || !exState[k].allDone) { allDone = false; break; }
+  }
+  var btn = panel.querySelector('.review-btn');
+  if (btn) {
+    if (allDone) btn.classList.add('active');
+    else btn.classList.remove('active');
+  }
+}
+
+// ─── EXPAND / COLLAPSE ───────────────────────────────────────────
+document.addEventListener('click', function(e) {
+  var tog = e.target.closest ? e.target.closest('.lg-toggle') : null;
+  if (!tog) return;
+  var card = tog.closest('.lg-card');
+  if (!card || card.classList.contains('card-done')) return;
+  var isOpen = card.classList.contains('expanded');
+  // Fechar todos os outros no mesmo painel
+  var panel = card.closest('.day-panel');
+  var others = panel.querySelectorAll('.lg-card.expanded');
+  for (var i = 0; i < others.length; i++) {
+    if (others[i] !== card) others[i].classList.remove('expanded');
+  }
+  if (!isOpen) {
+    card.classList.add('expanded');
+    if (!card.querySelector('.lg-tracker').hasChildNodes()) buildTracker(card);
+  } else {
+    card.classList.remove('expanded');
+  }
 });
+
+// ─── NAVEGAÇÃO DE DIAS ───────────────────────────────────────────
+var jsDay = new Date().getDay();
+var dayMap = {1:0, 2:1, 3:2, 4:3, 5:4};
+var activeDay = (dayMap[jsDay] !== undefined) ? dayMap[jsDay] : -1;
+
+if (activeDay >= 0) {
+  var todayChip = document.querySelector('.lg-chip[data-day="' + activeDay + '"]');
+  if (todayChip) todayChip.classList.add('today');
+}
+
+function showDay(idx) {
+  var chips = document.querySelectorAll('.lg-chip');
+  for (var i = 0; i < chips.length; i++) chips[i].classList.remove('on');
+  var panels = document.querySelectorAll('.day-panel');
+  for (var j = 0; j < panels.length; j++) panels[j].classList.remove('active');
+
+  if (idx >= 0) {
+    var chip = document.querySelector('.lg-chip[data-day="' + idx + '"]');
+    if (chip) chip.classList.add('on');
+    var panel = document.getElementById('day-' + idx);
+    if (panel) panel.classList.add('active');
+  } else {
+    var rest = document.getElementById('day-rest');
+    if (rest) rest.classList.add('active');
+  }
+}
+
+showDay(activeDay);
+
+var tabChips = document.querySelectorAll('.lg-chip');
+for (var tc = 0; tc < tabChips.length; tc++) {
+  (function(chip) {
+    chip.addEventListener('click', function() {
+      showDay(parseInt(chip.getAttribute('data-day')));
+    });
+  })(tabChips[tc]);
+}
+
+// ─── REVIEW / MODAL ──────────────────────────────────────────────
+function openReview(dayIdx) {
+  reviewDayIdx = dayIdx;
+  qAnswers = {};
+  qCurrent = 0;
+
+  var panel = document.getElementById('day-' + dayIdx);
+  var groupEl = panel.querySelector('.lg-group');
+  var groupName = groupEl ? groupEl.textContent : '';
+
+  // Coletar dados dos exercícios
+  reviewData = [];
+  var cards = panel.querySelectorAll('.lg-card');
+  for (var i = 0; i < cards.length; i++) {
+    var card = cards[i];
+    var k = cardKey(card);
+    var bw = isBW(card);
+    var st = exState[k] || {sets: [], allDone: false};
+
+    // Somar volume de séries confirmadas
+    var vol = 0;
+    var seriesDetail = [];
+    for (var s = 0; s < st.sets.length; s++) {
+      if (st.sets[s].done) {
+        vol += st.sets[s].val;
+        seriesDetail.push('S' + (s+1) + ':' + st.sets[s].val + (bw ? 's' : 'kg'));
+      }
+    }
+    var confirmedCount = seriesDetail.length;
+
+    reviewData.push({
+      name: card.getAttribute('data-name'),
+      bw: bw,
+      vol: vol,
+      count: confirmedCount,
+      detail: seriesDetail.join(' ')
+    });
+  }
+
+  // Preencher pergunta 2 com exercícios do dia
+  QUESTIONS[1].opts = [];
+  for (var r = 0; r < reviewData.length; r++) {
+    QUESTIONS[1].opts.push({e: '🏋️', l: reviewData[r].name});
+  }
+
+  // Montar modal
+  document.getElementById('stepQ').style.display = 'block';
+  document.getElementById('stepR').style.display = 'none';
+  document.getElementById('qTitle').textContent = DAY_NAMES[dayIdx] + ' — ' + groupName;
+  setProgress(0);
+  renderQuestion(0);
+  document.getElementById('overlay').classList.add('open');
+}
+
+function setProgress(active) {
+  for (var i = 0; i < 3; i++) {
+    var d = document.getElementById('pd' + i);
+    if (!d) continue;
+    d.className = 'prog-dot';
+    if (i < active) d.className += ' pdone';
+    else if (i === active) d.className += ' pactive';
+  }
+}
+
+function renderQuestion(idx) {
+  var q = QUESTIONS[idx];
+  var block = document.getElementById('qBlock');
+  block.innerHTML = '';
+
+  var qText = document.createElement('div');
+  qText.className = 'q-text';
+  qText.textContent = q.text;
+  block.appendChild(qText);
+
+  var opts = document.createElement('div');
+  opts.className = 'q-opts';
+  for (var i = 0; i < q.opts.length; i++) {
+    (function(opt) {
+      var btn = document.createElement('button');
+      btn.className = 'q-opt';
+      btn.innerHTML = '<span class="q-emoji">' + opt.e + '</span><span>' + opt.l + '</span>';
+      btn.onclick = function() {
+        var allOpts = opts.querySelectorAll('.q-opt');
+        for (var j = 0; j < allOpts.length; j++) allOpts[j].classList.remove('selected');
+        btn.classList.add('selected');
+        qAnswers[q.key] = opt.l;
+        setTimeout(function() { nextQuestion(idx + 1); }, 300);
+      };
+      opts.appendChild(btn);
+    })(q.opts[i]);
+  }
+  block.appendChild(opts);
+}
+
+function nextQuestion(next) {
+  if (next < 3) {
+    qCurrent = next;
+    setProgress(next);
+    renderQuestion(next);
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('stepQ').style.display = 'none';
+  document.getElementById('stepR').style.display = 'block';
+
+  var dayName = DAY_NAMES[reviewDayIdx];
+  var panel = document.getElementById('day-' + reviewDayIdx);
+  var groupEl = panel.querySelector('.lg-group');
+  var groupName = groupEl ? groupEl.textContent : '';
+
+  document.getElementById('rTitle').textContent = 'Analise · ' + dayName;
+  document.getElementById('rSub').textContent = groupName;
+
+  // Gráfico
+  var hasBW = false;
+  var maxVol = 0;
+  for (var i = 0; i < reviewData.length; i++) {
+    if (reviewData[i].bw) hasBW = true;
+    if (reviewData[i].vol > maxVol) maxVol = reviewData[i].vol;
+  }
+  if (maxVol === 0) maxVol = 1;
+
+  document.getElementById('chartLbl').textContent = hasBW
+    ? 'Volume / Duração por exercício'
+    : 'Volume total por exercício (kg)';
+
+  var barsEl = document.getElementById('chartBars');
+  barsEl.innerHTML = '';
+  for (var r = 0; r < reviewData.length; r++) {
+    (function(d) {
+      var pct = (d.vol / maxVol) * 100;
+      var valLabel = d.vol > 0 ? (d.bw ? d.vol + 's' : d.vol + 'kg') : '—';
+      var row = document.createElement('div');
+      row.className = 'bar-row';
+      row.innerHTML = '<div class="bar-name">' + d.name + '</div>'
+        + '<div class="bar-track"><div class="bar-fill" id="bf-' + r + '"></div></div>'
+        + '<div class="bar-val">' + valLabel + '</div>';
+      barsEl.appendChild(row);
+      setTimeout(function() {
+        var fill = document.getElementById('bf-' + r);
+        if (fill) fill.style.width = pct + '%';
+      }, 100);
+    })(reviewData[r]);
+  }
+
+  document.getElementById('aiText').className = 'ai-text loading';
+  document.getElementById('aiText').textContent = 'Gerando analise...';
+
+  callAI(dayName, groupName, reviewData, qAnswers);
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+}
+
+function overlayClick(e) {
+  if (e.target === document.getElementById('overlay')) closeModal();
+}
+
+// ─── IA ──────────────────────────────────────────────────────────
+async function callAI(dayName, group, data, answers) {
+  var lines = [];
+  for (var i = 0; i < data.length; i++) {
+    var d = data[i];
+    if (d.bw) {
+      lines.push(d.name + ': peso corporal, ' + d.count + ' series [' + (d.detail || '--') + ']');
+    } else {
+      lines.push(d.name + ': ' + d.count + ' series [' + (d.detail || '--') + '] vol.' + d.vol + 'kg');
+    }
+  }
+
+  var prompt = 'Voce e um personal trainer experiente. Analise este treino:\n\n'
+    + 'Dia: ' + dayName + ' — ' + group + '\n\n'
+    + 'EXERCICIOS:\n' + lines.join('\n') + '\n\n'
+    + 'FEEDBACK DO ALUNO:\n'
+    + 'Como se sentiu: ' + (answers.sensacao || 'nao informado') + '\n'
+    + 'Exercicio mais dificil: ' + (answers.dificuldade || 'nao informado') + '\n'
+    + 'Recuperacao: ' + (answers.recuperacao || 'nao informado') + '\n\n'
+    + 'Escreva uma analise em portugues brasileiro com 3-4 frases curtas. '
+    + 'Comente o volume geral, mencione o exercicio mais pesado/dificil e termine com UMA dica pratica. '
+    + 'Tom direto e motivador. Sem listas, so texto corrido.';
+
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{role: 'user', content: prompt}]
+      })
+    });
+    var json = await res.json();
+    var text = (json.content && json.content[0] && json.content[0].text)
+      ? json.content[0].text : 'Analise indisponivel.';
+    document.getElementById('aiText').textContent = text;
+    document.getElementById('aiText').className = 'ai-text';
+  } catch(err) {
+    document.getElementById('aiText').textContent = 'Nao foi possivel gerar a analise. Verifique sua conexao.';
+    document.getElementById('aiText').className = 'ai-text';
+  }
+}
 </script>
 </body>
 </html>
